@@ -1,5 +1,3 @@
-### Question 1 to 3
-
 ## Question 1
 ❔ Write a program to check whether the given number is prime or not.
 
