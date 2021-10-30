@@ -23,14 +23,16 @@ int main() {
 
 ### Algorithm
 
-Step 1: Enter the number 
-Step 2: Initailize loop variable i=2 
-Step 3: Check whether the number is less than the root of the entered number
-    Step 3.1: Check whether the number enter by the user leaves a remainder when it is divided by the loop variable
-        Step 3.1.1: If the above condition statisfies then we have to assume that the number gets divided and we get the remainder as 0
-                    In such case print the statement that number is not a prime one.
-Step 4: Repeat step 3 if the return statement inside the loop is not activated and increase the value of loop variable i by i
-Step 5: If the return statement is not triggered and the loop is successsfully executed print that the numeber is prime
+1) start
+2) read number 
+3) Initailize loop variable i=2 
+4) Check whether the number is less than the root of the entered number
+   1) Check whether the number enter by the user leaves a remainder when it is divided by the loop variable
+        1) If the above condition statisfies then we have to assume that the number gets divided and we get the remainder as 0
+                    In such case print number is not prime and exit.
+4) Repeat step 3 after increasing the value of loop variable i by 1
+5) Print that the numeber is prime.
+6) stop
 
 ### Output
 
