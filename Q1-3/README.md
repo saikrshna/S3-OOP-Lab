@@ -68,6 +68,20 @@ int main() {
 
 ### Algorithm
 
+>1) strat
+>2) read numbers a and b
+>3)  if a=0,b=0, or a=b
+>>3.1) if a = b print a
+>>3.2) if a = 0 print b
+>>3.3) if b=0 print a
+>4) set minimum as a and maximum as b
+>5) repeat the steps while a!=0
+>>5.1) temp = a
+>>5.2) a= b%a
+>>5.3) b=temp
+>6) print b
+>7) stop
+
 ### Output
 
 ```text
