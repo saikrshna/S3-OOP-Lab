@@ -13,3 +13,5 @@ If you are intrested in contributing feel free to open pull request. For areas t
 ### Contributors
 
 - [@rohittp0](https://github.com/rohittp0)
+- [@sunithvs](https://github.com/sunithvs)
+- [@Izroth404](https://github.com/Izroth404)
