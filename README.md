@@ -1,6 +1,5 @@
 <head>
   <!-- Primary Meta Tags -->
-  <title>S3 OOP Lab</title>
   <meta name="title" content="S3 OOP Lab">
   <meta name="description" content="This repository that would host all the programs for the 3rd semester OOP Lab">
 
