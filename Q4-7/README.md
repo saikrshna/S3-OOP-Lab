@@ -1,4 +1,4 @@
-## Question 1
+## Question 4
 ❔ A phone number, such as (212) 767-8900, can be thought of as having
 three parts: the area code (212), the exchange (767), and the number
 (8900). 
@@ -61,7 +61,7 @@ Process finished with exit code 0
 
 ![phone number structure](outputs/phone.png)
 
-## Question 2
+## Question 5
 ❔ Define a class Date that contains details like year, month and date. Write
 a C++ program to check the validity of the date that you enter and display
 the next date.
@@ -160,7 +160,7 @@ Process finished with exit code 0
 
 ![date output](outputs/date.png)
 
-## Question 3
+## Question 6
 ❔ Define a class to represent bank account. Include members like name of
 depositor, account no, Type of account, balance amount in the account.
 Write C++ program with member functions to: 
@@ -266,7 +266,7 @@ Process finished with exit code 0
 
 ![max prime](outputs/bank.png)
 
-## Question 4
+## Question 7
 ❔ Write a class which represents the shape triangle. The member functions
 should :
 1) Check the validity of the triangle 
