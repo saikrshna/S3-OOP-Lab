@@ -11,7 +11,9 @@ number for the other one. Then display both numbers.
 The interchange might look like this:
 
 > Enter your area code, exchange, and number: 415 555 1212
+> 
 > My number is (212) 767-8900
+> 
 > Your number is (415) 555-1212
 
 ### Program
