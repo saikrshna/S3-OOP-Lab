@@ -9,17 +9,17 @@ struct Phone {
     short unsigned int exchange;
     short unsigned int number;
 
-    void fix(Phone &phone)
+    void fix()
     {
-        phone.area *= (phone.area < 999) - (phone.area > 999);
-        phone.exchange *= (phone.exchange < 999) - (phone.exchange > 999);
-        phone.number *= (phone.number < 9999) - (phone.number > 9999);
+        area *= (area < 999) - (area > 999);
+        exchange *= (exchange < 999) - (exchange > 999);
+        number *= (number < 9999) - (number > 9999);
     }
 
-    bool isValid(Phone &phone)
+    bool isValid() const
     {
-        return phone.area < 999 && phone.exchange < 999 &&  phone.number < 9999 &&
-                phone.area > 100 && phone.exchange > 100 && phone.number > 1000;
+        return area < 999 && exchange < 999 &&  number < 9999 &&
+                area > 100 && exchange > 100 && number > 1000;
     }
 };
 
@@ -30,9 +30,9 @@ int main() {
     std::cout << "Enter your area code, exchange, and number :";
     std::cin >> yourNumber.area >> yourNumber.exchange >> yourNumber.number;
 
-    yourNumber.fix(yourNumber);
+    yourNumber.fix();
 
-    if(!yourNumber.isValid(yourNumber))
+    if(!yourNumber.isValid())
         return std::cout << "Invalid number", 1;
 
     std::cout << "My Number : ";
