@@ -63,6 +63,8 @@ int main() {
 ```
 
 ### Algorithm
+
+```
  1.  Start
  2.  Declare a structure Phone with 
 	 2.1 data members area,exchange,number
@@ -73,8 +75,7 @@ int main() {
  5. yourNumber.fix()
  6. if yourNumber is not valid then print phone_number is not valid
  7. else print myNumber , yourNumber
- 8.  stop
-```markdown
+ 8. stop
 ```
 
 ### Output
