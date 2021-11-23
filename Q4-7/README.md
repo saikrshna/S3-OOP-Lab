@@ -63,7 +63,17 @@ int main() {
 ```
 
 ### Algorithm
-
+ 1.  Start
+ 2.  Declare a structure Phone with 
+	 2.1 data members area,exchange,number
+	2.2 function fix change all negative numbers to positive
+	2.3 function is_valid checks the validity of number return true if valid else return false
+ 3. create an object of Phone with default values (myNumber) and one empty object (yourNumber)
+ 4.  read values to yourNumber
+ 5. yourNumber.fix()
+ 6. if yourNumber is not valid then print phone_number is not valid
+ 7. else print myNumber , yourNumber
+ 8.  stop
 ```markdown
 ```
 
