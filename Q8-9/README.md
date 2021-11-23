@@ -49,12 +49,18 @@ public:
     }
 };
 
+int* Array :: data = new int[1];
+int Array :: length = 0;
+
 int main() {
     Array array1, array2, array3;
+    int m;
 
     array1.readData();
     std::cout << "Average = " << array1.getAverage() << std::endl;
-    array2.scale(5);
+    std::cout << "By what number do you want to multiply.";
+    std::cin >> m;
+    array2.scale(m);
     std::cout << "Average = " << array1.getAverage() << std::endl;
     array3.sort();
     array3.print();
