@@ -35,21 +35,24 @@ public:
         this->balance += amount;
     }
 
-    int withdraw() {
+    void withdraw() {
         std::cout << "Enter amount to withdraw. ( Current balance: " << this->balance << " )" << std::endl;
         float amount;
 
         std::cin >> amount;
 
         if (this->balance - amount < 500)
-            return std::cout << "In sufficient balance", 1;
+            std::cout << "In sufficient balance" << std::endl;
+        else
+            this->balance -= amount;
 
-        this->balance -= amount;
-        return 0;
+        getchar();
+        getchar();
     }
 
     void print() {
         std::cout << "Account Holder\t" << name << std::endl << "Balance\t" << balance << std::endl;
+        getchar();
     }
 
 };
@@ -97,10 +100,11 @@ int main() {
             "Create Account",
             "Show My Details",
             "Deposit",
-            "Withdraw"
+            "Withdraw",
+            "Exit"
     };
 
-    int items = 4;
+    int items = 5;
     int choice = 0;
 
     Account account;
@@ -111,12 +115,16 @@ int main() {
             case 0:
                 account.init();
                 break;
-            case 1:
+            case 1: {
                 account.print();
-            case 3:
+                break;
+            }
+            case 2:
                 account.deposit();
-            case 4:
+                break;
+            case 3:
                 account.withdraw();
+                break;
             default:
                 return 0;
         }

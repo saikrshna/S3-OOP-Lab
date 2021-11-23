@@ -128,42 +128,42 @@ public:
                "Valid" : "Not Valid";
     }
 
-    friend Date operator++(Date &date) {
-        if (date.day >= (max_days[date.month] + (date.month == 2 && isLeap(date.year)))) {
-            date.month = date.month++ % 12;
-            date.day = 1;
-            date.year += date.month == 1;
+    Date next() {
+        if (this->day >= (max_days[this->month] + (this->month == 2 && isLeap(this->year)))) {
+            this->month = (this->month + 1) % 12;
+            this->day = 1;
+            this->year += this->month == 1;
         } else
-            date.day++;
+            this->day++;
 
-        return date;
+        return *this;
     }
 
-    friend std::ostream &operator<<(std::ostream &out, Date &date) {
-        return out << date.day << "/ " << date.month << "/ " << date.year;
+    void print() const {
+        std::cout << this->day << "/ " << this->month << "/ " << this->year << std::endl << std::endl;
     }
 
-    friend std::istream &operator>>(std::istream &is, Date &date) {
-        is >> date.day >> date.month >> date.year;
-        return is;
+    void read() {
+        std::cin >> this->day >> this->month >> this->year;
     }
 };
 
 int main() {
     Date date1 = Date(31, 12, 2020);
     Date date2 = Date();
-    Date next;
 
     std::cout << "Enter a date :";
-    std::cin >> date2;
+    date2.read();
 
-    std::cout << "Date 1 : " << date1 << " " << date1.isValid() << std::endl;
-    next = ++date1;
-    std::cout << " Next Date : " << next << std::endl << std::endl;
+    std::cout << "Date 1 : " << date1.isValid() << " ";
+    date1.print();
+    std::cout << " Next Date : ";
+    date1.next().print();
 
-    std::cout << "Date 2 : " << date2 << " " << date2.isValid() << std::endl;
-    next = ++date2;
-    std::cout << " Next Date : " << next << std::endl;
+    std::cout << "Date 2 : " << date2.isValid() << " ";
+    date2.print();
+    std::cout << " Next Date : ";
+    date2.next().print();
 
     return 0;
 }
@@ -202,6 +202,7 @@ Write C++ program with member functions to:
 
 ```cpp
 #include <iostream>
+#include <conio.h>
 
 class Account {
 private:
@@ -211,65 +212,122 @@ private:
     std::string type;
 
 public:
-    void init(std::string &newName, long int newNumber, float newBalance, std::string &newType) {
-        name = newName;
-        number = newNumber;
-        balance = newBalance;
-        type = newType;
+    void init() {
+        std::cout << "Enter name :";
+        std::cin >> name;
+
+        std::cout << "Enter Account Number :";
+        std::cin >> number;
+
+        std::cout << "Enter Balance :";
+        std::cin >> balance;
+
+        std::cout << "Enter Account Type :";
+        std::cin >> type;
     }
 
-    void deposit(const float amount) {
+    void deposit() {
+        std::cout << "Enter amount deposit" << std::endl;
+        float amount;
+        std::cin >> amount;
+
         this->balance += amount;
     }
 
-    bool withdraw(const float amount) {
-        if (amount > this->balance)
-            return false;
+    void withdraw() {
+        std::cout << "Enter amount to withdraw. ( Current balance: " << this->balance << " )" << std::endl;
+        float amount;
 
-        this->balance -= amount;
+        std::cin >> amount;
 
-        return true;
+        if (this->balance - amount < 500)
+            std::cout << "In sufficient balance" << std::endl;
+        else
+            this->balance -= amount;
+
+        getchar();
+        getchar();
     }
 
     void print() {
         std::cout << "Account Holder\t" << name << std::endl << "Balance\t" << balance << std::endl;
+        getchar();
     }
 
 };
 
+void highlight_option(int index, char options[][16], int items) {
+    std::cout << "\033[2J\033[1;1H" << std::flush;
+    std::cout << "Press Enter to select any other key to exit." << std::endl;
+
+    for (int i = 0; i < items; i++)
+        if (i == index)
+            std::cout << "(#) " << options[i] << std::endl;
+        else
+            std::cout << "( ) " << options[i] << std::endl;
+}
+
+int handle_key() {
+    unsigned char ch = _getch();
+
+    if (ch == 224)
+        return _getch() == 72 ? -1 : 1;
+
+    return ch == 13 ? 0 : 2;
+}
+
+int get_choice(char menu_options[][16], int items = 4) {
+    int menu_index = 0;
+
+    while (true) {
+        highlight_option(menu_index, menu_options, items);
+        int action = handle_key();
+
+        if (!action)
+            break;
+        if (action > 1)
+            return items + 1;
+
+        menu_index = (menu_index + action) % items;
+    }
+
+    return menu_index;
+}
+
 int main() {
+    char menu_options[][16] = {
+            "Create Account",
+            "Show My Details",
+            "Deposit",
+            "Withdraw",
+            "Exit"
+    };
+
+    int items = 5;
+    int choice = 0;
+
     Account account;
 
-    std::string name;
-    long int number;
-    float balance;
-    std::string type;
-
-    std::cout << "Enter name :";
-    std::cin >> name;
-
-    std::cout << "Enter Account Number :";
-    std::cin >> number;
-
-    std::cout << "Enter Balance :";
-    std::cin >> balance;
-
-    std::cout << "Enter Account Type :";
-    std::cin >> type;
-
-    account.init(name, number, balance, type);
-
-    std::cout << "Enter Deposit :";
-    std::cin >> balance;
-
-    account.deposit(balance);
-
-    std::cout << "Enter Withdraw :";
-    std::cin >> balance;
-
-    std::cout << (account.withdraw(balance) ? "Withdraw Success" : "Insufficient Balance") << std::endl;
-
-    account.print();
+    while (choice < items) {
+        choice = get_choice(menu_options, items);
+        switch (choice) {
+            case 0:
+                account.init();
+                break;
+            case 1: {
+                account.print();
+                break;
+            }
+            case 2:
+                account.deposit();
+                break;
+            case 3:
+                account.withdraw();
+                break;
+            default:
+                return 0;
+        }
+    }
 
     return 0;
 }
