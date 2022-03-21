@@ -18,27 +18,18 @@ public:
 
     constexpr static const int max_days[13] = {-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    Date(int day, int month, int year) {
-        this->year = year;
-        this->month = month;
-        this->day = day;
-    }
-
     Date() = default;
 
-    const char *isValid() const {
-        return (this->year > 0 && this->month > 0 && this->day > 0 &&
-                this->month < 13 && this->day <= (max_days[this->month] + (this->month == 2 && isLeap(this->year)))) ?
-               "Valid" : "Not Valid";
-    }
+    Date operator+(int days) {
+        Date date = *this;
 
-    friend Date operator++(Date &date) {
-        if (date.day >= (max_days[date.month] + (date.month == 2 && isLeap(date.year)))) {
-            date.month = date.month++ % 12;
-            date.day = 1;
-            date.year += date.month == 1;
-        } else
-            date.day++;
+        while (days--)
+            if (date.day >= (max_days[date.month] + (date.month == 2 && isLeap(date.year)))) {
+                date.month = date.month++ % 12;
+                date.day = 1;
+                date.year += date.month == 1;
+            } else
+                date.day++;
 
         return date;
     }
@@ -54,20 +45,26 @@ public:
 };
 
 int main() {
-    Date date1 = Date(31, 12, 2020);
-    Date date2 = Date();
+    Date date;
     Date next;
 
+    int days;
+
+    std::string str;
+
+    std::cout << str.max_size();
+    std::cout<<std::endl;
+    std::cout << str.capacity();
+
     std::cout << "Enter a date :";
-    std::cin >> date2;
+    std::cin >> date;
 
-    std::cout << "Date 1 : " << date1 << " " << date1.isValid() << std::endl;
-    next = ++date1;
-    std::cout << " Next Date : " << next << std::endl << std::endl;
+    std::cout << "Enter number of days to add: ";
+    std::cin >> days;
 
-    std::cout << "Date 2 : " << date2 << " " << date2.isValid() << std::endl;
-    next = ++date2;
-    std::cout << " Next Date : " << next << std::endl;
+    next = date + days;
+
+    std::cout << date << " + " << days << " days = " << next << std::endl;
 
     return 0;
 }
